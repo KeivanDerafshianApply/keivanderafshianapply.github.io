@@ -1,3 +1,34 @@
+/* Base Typography */
+body {
+  font-family: 'Inter', 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+}
+
+/* Navigation / Buttons */
+nav, a, button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Subtle text color */
+p {
+  color: #444;
+  font-weight: 400;
+}
+
 @charset "UTF-8";
 /*!
 * Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
