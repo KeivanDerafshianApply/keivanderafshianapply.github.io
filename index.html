@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="Portfolio of Keivan Derafshian - Data Scientist & Researcher" />
@@ -9,225 +9,668 @@
 
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
-  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ============================================================
+       Keivan Derafshian — Portfolio
+       Visual concept: a mathematician's notebook / statistical plot.
+       Ink-blue + paper, coordinate grid, one amber "data" accent.
+       Type: STIX Two Text (scientific-publishing serif) for display,
+             Schibsted Grotesk for body, IBM Plex Mono for labels.
+       ============================================================ */
 
-  <link rel="stylesheet" href="css/custom.css">
-  </head>
+    :root {
+      --ink:      #0e1d2f;
+      --ink-2:    #16293f;
+      --ink-3:    #21374f;
+      --paper:    #f4f6f8;
+      --card:     #ffffff;
+      --line:     #d9e0e7;
+      --line-dark:#2b4056;
+      --accent:   #e5a13b;
+      --accent-d: #c88724;
+      --blue:     #2b5fb0;
+      --text:     #21303f;
+      --muted:    #5c6b7a;
+      --muted-l:  #9db0c2;
+      --radius:   14px;
+      --maxw:     1080px;
+      --display:  "STIX Two Text", Georgia, "Times New Roman", serif;
+      --body:     "Schibsted Grotesk", "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono:     "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    }
 
-  <body id="page-top">
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-      <div class="container">
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
-                type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#projects">Projects</a></li>
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--paper);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue); }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Navigation ---------- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(14, 29, 47, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: background .3s ease;
+    }
+    .nav-inner {
+      max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      font-family: var(--mono); font-size: 0.85rem; letter-spacing: .08em;
+      color: #fff; text-decoration: none; text-transform: uppercase;
+    }
+    .nav-brand .tick { color: var(--accent); }
+    .nav-links { display: flex; gap: 6px; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--muted-l); padding: 8px 14px; border-radius: 8px;
+      transition: color .2s ease, background .2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav-toggle {
+      display: none; background: none; border: 1px solid rgba(255,255,255,.25);
+      color: #fff; font-family: var(--mono); font-size: .8rem; letter-spacing: .1em;
+      text-transform: uppercase; padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      background: var(--ink);
+      color: #fff;
+      padding: 160px 0 110px;
+      overflow: hidden;
+    }
+    /* coordinate-grid: the notebook the whole site sits on */
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(157,176,194,0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157,176,194,0.10) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 40%, transparent 100%);
+    }
+    .hero-plot {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .avatar {
+      width: 168px; height: 168px; border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.85);
+      box-shadow: 0 0 0 10px rgba(229,161,59,0.14), 0 18px 40px rgba(0,0,0,0.45);
+      margin-bottom: 34px;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      letter-spacing: .01em;
+      line-height: 1.08;
+    }
+    .hero h1 .accent-dot { color: var(--accent); }
+    .hero-rule {
+      width: 76px; height: 3px; background: var(--accent);
+      margin: 26px auto 22px; border-radius: 2px;
+    }
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: clamp(.82rem, 2vw, .98rem);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted-l);
+    }
+    .hero-sub .sep { color: var(--accent); padding: 0 .35em; }
+
+    /* ---------- Sections ---------- */
+    .section { padding: 96px 0; }
+    .section-dark { background: var(--ink); color: #fff; }
+    .section-alt  { background: #eceff3; }
+
+    .eyebrow {
+      display: flex; align-items: center; gap: 14px;
+      font-family: var(--mono); font-size: .78rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--accent-d);
+      margin-bottom: 14px;
+    }
+    .section-dark .eyebrow { color: var(--accent); }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+
+    .section-title {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+      line-height: 1.15;
+      margin-bottom: 34px;
+    }
+
+    /* ---------- About ---------- */
+    .about-lead {
+      font-size: 1.13rem;
+      line-height: 1.85;
+      max-width: 62ch;
+    }
+    .about-lead strong { color: var(--ink); font-weight: 700; }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.35fr; gap: 56px;
+      margin-top: 64px;
+    }
+    .subhead {
+      font-family: var(--mono); font-size: .8rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px; margin-bottom: 18px;
+    }
+
+    .edu-list { list-style: none; }
+    .edu-list li {
+      position: relative; padding: 0 0 16px 26px;
+      border-left: 1px solid var(--line);
+      margin-left: 6px;
+    }
+    .edu-list li:last-child { padding-bottom: 0; }
+    .edu-list li::before {
+      content: ""; position: absolute; left: -5px; top: .55em;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--paper);
+    }
+    .edu-list em { color: var(--muted); font-style: normal; display: block; font-size: .93rem; }
+
+    .cert-list { list-style: none; columns: 1; }
+    .cert-list li { break-inside: avoid; margin-bottom: 10px; }
+    .cert-list a {
+      display: block;
+      color: var(--text); text-decoration: none;
+      font-size: .95rem;
+      padding: 10px 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .cert-list a:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 18px rgba(14,29,47,0.08);
+      border-left-color: var(--blue);
+    }
+    .cert-list a::after {
+      content: "\2197"; float: right; color: var(--muted); font-size: .85em;
+    }
+
+    .cv-row {
+      margin-top: 64px;
+      display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+    }
+    .cv-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: .85rem; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--ink); background: transparent;
+      border: 2px solid var(--ink); border-radius: 12px;
+      padding: 14px 30px;
+      transition: background .22s ease, color .22s ease, transform .22s ease, box-shadow .22s ease;
+    }
+    .cv-btn:hover {
+      background: var(--ink); color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(14,29,47,0.22);
+    }
+    .cv-btn i { color: var(--accent-d); transition: color .22s ease; }
+    .cv-btn:hover i { color: var(--accent); }
+
+    /* ---------- Projects ---------- */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 44px rgba(14,29,47,0.14);
+    }
+    .project-media { position: relative; overflow: hidden; aspect-ratio: 16/9; background: var(--ink-2); }
+    .project-media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .project-card:hover .project-media img { transform: scale(1.045); }
+    .project-body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+    .project-title {
+      font-family: var(--display); font-weight: 700;
+      font-size: 1.3rem; margin-bottom: 10px; color: var(--ink);
+    }
+    .project-text { color: var(--muted); font-size: .97rem; margin-bottom: 22px; flex: 1; }
+    .project-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: .74rem; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 10px 16px; border-radius: 9px;
+      transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .btn-solid { background: var(--ink); color: #fff; border: 1px solid var(--ink); }
+    .btn-solid:hover { background: var(--ink-3); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+    .btn i { color: var(--accent-d); }
+    .btn-solid i { color: var(--accent); }
+
+    /* ---------- Footer / Contact ---------- */
+    .footer {
+      background: var(--ink); color: #fff;
+      padding: 88px 0 56px;
+      position: relative; overflow: hidden;
+    }
+    .footer::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(157,176,194,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157,176,194,0.07) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to top, #000 20%, transparent 90%);
+      -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 90%);
+    }
+    .footer-grid {
+      position: relative;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+      text-align: center;
+    }
+    .footer h4 {
+      font-family: var(--mono); font-size: .8rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .footer p { color: var(--muted-l); }
+    .footer a { color: #fff; }
+    .social-row { display: flex; gap: 12px; justify-content: center; }
+    .btn-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--line-dark); color: #fff; text-decoration: none;
+      font-size: 1.05rem;
+      transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+    }
+    .btn-social:hover {
+      background: var(--accent); border-color: var(--accent); color: var(--ink);
+      transform: translateY(-3px);
+    }
+    .footer-note {
+      position: relative;
+      margin-top: 64px; padding-top: 24px;
+      border-top: 1px solid var(--line-dark);
+      text-align: center;
+      font-family: var(--mono); font-size: .74rem; letter-spacing: .1em;
+      color: var(--muted-l);
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 44px; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: var(--ink);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        display: none; padding: 8px 16px 16px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 14px; }
+      .section { padding: 72px 0; }
+      .hero { padding: 130px 0 84px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body id="page-top">
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#page-top"><span class="tick">f(</span>KD<span class="tick">)</span>&nbsp;Keivan Derafshian</a>
+      <button class="nav-toggle" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        Menu <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <!-- Decorative scatter + regression line: draws itself on load -->
+    <svg class="hero-plot" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="plot-points" fill="#e5a13b" opacity="0.5">
+        <circle cx="120" cy="520" r="4"/><circle cx="210" cy="470" r="3.5"/>
+        <circle cx="300" cy="490" r="4.5"/><circle cx="380" cy="420" r="3"/>
+        <circle cx="470" cy="430" r="4"/><circle cx="560" cy="360" r="3.5"/>
+        <circle cx="660" cy="380" r="4.5"/><circle cx="750" cy="300" r="3"/>
+        <circle cx="850" cy="310" r="4"/><circle cx="940" cy="240" r="3.5"/>
+        <circle cx="1040" cy="250" r="4.5"/><circle cx="1120" cy="180" r="3.5"/>
+      </g>
+      <path class="plot-line" d="M 80 560 L 1150 160" stroke="#e5a13b" stroke-width="2"
+            stroke-dasharray="1140" stroke-dashoffset="1140" fill="none" opacity="0.55"/>
+    </svg>
+    <style>
+      .plot-line { animation: drawline 2.2s ease-out .4s forwards; }
+      @keyframes drawline { to { stroke-dashoffset: 0; } }
+      .plot-points circle { opacity: 0; animation: popin .5s ease-out forwards; }
+      .plot-points circle:nth-child(1)  { animation-delay: .30s; }
+      .plot-points circle:nth-child(2)  { animation-delay: .45s; }
+      .plot-points circle:nth-child(3)  { animation-delay: .60s; }
+      .plot-points circle:nth-child(4)  { animation-delay: .75s; }
+      .plot-points circle:nth-child(5)  { animation-delay: .90s; }
+      .plot-points circle:nth-child(6)  { animation-delay: 1.05s; }
+      .plot-points circle:nth-child(7)  { animation-delay: 1.20s; }
+      .plot-points circle:nth-child(8)  { animation-delay: 1.35s; }
+      .plot-points circle:nth-child(9)  { animation-delay: 1.50s; }
+      .plot-points circle:nth-child(10) { animation-delay: 1.65s; }
+      .plot-points circle:nth-child(11) { animation-delay: 1.80s; }
+      .plot-points circle:nth-child(12) { animation-delay: 1.95s; }
+      @keyframes popin { to { opacity: 1; } }
+    </style>
+
+    <div class="container hero-inner">
+      <img class="avatar" src="assets/img/profile.jpg" alt="Keivan Derafshian" />
+      <h1>Keivan Derafshian<span class="accent-dot">.</span></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">
+        Mathematician <span class="sep">|</span> Data Analyst <span class="sep">|</span> Machine Learning Enthusiast
+      </p>
+    </div>
+  </header>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">About</h2>
+      </div>
+
+      <div class="reveal">
+        <p class="about-lead">
+          I am currently pursuing a <strong>Master&rsquo;s degree in Mathematics</strong> at the University of Potsdam, specializing in <strong>Data Analysis Structures</strong>. Throughout my studies, I have strengthened my expertise in <strong>statistics, data science, and machine learning</strong>. My passion lies in <strong>transforming complex data into practical, real-world applications</strong> through the development of machine learning models. I enjoy contributing to <strong>open-source projects</strong> and exploring how these tools can be applied to solve real challenges. With a particular interest in <strong>engineering tools for modeling and understanding industrial processes</strong>, I aim to drive innovation and improve efficiency across diverse sectors. Originally from Iran, I hold a background in <strong>Statistics</strong>, which laid the foundation for my academic and professional journey.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="reveal">
+          <h3 class="subhead">Education</h3>
+          <ul class="edu-list">
+            <li>M.Sc. in Mathematics (Data Analysis Structure), <em>University of Potsdam, Germany</em></li>
+            <li>M.Sc. in Business Management, <em>Azad University of Tehran, Iran</em></li>
+            <li>B.Sc. in Statistics, <em>IKI University, Iran</em></li>
+          </ul>
+        </div>
+
+        <div class="reveal">
+          <h3 class="subhead">Licenses &amp; Certifications</h3>
+          <ul class="cert-list">
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/DDB0DKH2PYKV" target="_blank" rel="noopener">Meta Data Analyst Professional Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/HYDO2JEI68OC" target="_blank" rel="noopener">Google Advanced Data Analytics Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/YN6L7Z9D34UK" target="_blank" rel="noopener">Meta Marketing Analytics Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/EQ1ZMI42SGFF" target="_blank" rel="noopener">IBM Business Analyst Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/RX6XAVNRR5SC" target="_blank" rel="noopener">IBM Data Science Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/HYT7AG7DNENE" target="_blank" rel="noopener">Google Business Intelligence Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/R8AVCXBU5C4Q" target="_blank" rel="noopener">Advanced Statistics for Data Science Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/DRN2PMCQHVSL" target="_blank" rel="noopener">Data Visualization Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/C41K56CUBKIZ" target="_blank" rel="noopener">Mathematics for Machine Learning Specialization</a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/5CUM44MBZVS2" target="_blank" rel="noopener">Linear Algebra from Elementary to Advanced Specialization</a></li>
           </ul>
         </div>
       </div>
-    </nav>
 
-    <header class="masthead bg-primary text-white text-center">
-      <div class="container d-flex align-items-center flex-column">
-        <img class="masthead-avatar mb-5" src="assets/img/profile.jpg" alt="Keivan Derafshian" />
-        <h1 class="masthead-heading text-uppercase mb-0">Keivan Derafshian</h1>
-        <p class="masthead-subheading font-weight-light mb-0">
-          Mathematician | Data Analyst | Machine Learning Enthusiast
-        </p>
+      <div class="cv-row reveal">
+        <a href="Keivan-Derafshian-CV.pdf" target="_blank" class="cv-btn" download>
+          <i class="fa-solid fa-arrow-down"></i> CV (English)
+        </a>
+        <a href="Keivan-Derafshian-Lebenslauf.pdf" target="_blank" class="cv-btn" download>
+          <i class="fa-solid fa-arrow-down"></i> Lebenslauf (German)
+        </a>
       </div>
-    </header>
-
-    <section class="page-section bg-primary text-white mb-0" id="about">
-      <div class="container">
-        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
-        <div class="divider-custom divider-light">
-
-        <div class="row">
-         <div class="col-lg-12">
-  <p class="lead">
-    I am currently pursuing a <strong>Master’s degree in Mathematics</strong> at the University of Potsdam, specializing in <strong>Data Analysis Structures</strong>. Throughout my studies, I have strengthened my expertise in <strong>statistics, data science, and machine learning</strong>. My passion lies in <strong>transforming complex data into practical, real-world applications</strong> through the development of machine learning models. I enjoy contributing to <strong>open-source projects</strong> and exploring how these tools can be applied to solve real challenges. With a particular interest in <strong>engineering tools for modeling and understanding industrial processes</strong>, I aim to drive innovation and improve efficiency across diverse sectors. Originally from Iran, I hold a background in <strong>Statistics</strong>, which laid the foundation for my academic and professional journey.
-  </p>
-</div>
-
-
-          <h3 class="text-uppercase mt-5">Education</h3>
-<ul>
-  <li>M.Sc. in Mathematics (Data Analysis Structure), <em>University of Potsdam, Germany</em></li>
-  <li>M.Sc. in Business Management, <em>Azad University of Tehran, Iran</em></li>
-  <li>B.Sc. in Statistics, <em>IKI University, Iran</em></li>
-</ul>
-
-
-         <h3 class="text-uppercase mt-5">Licenses & Certifications</h3>
-<ul>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/DDB0DKH2PYKV" target="_blank" style="color:white; text-decoration:underline;">Meta Data Analyst Professional Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/HYDO2JEI68OC" target="_blank" style="color:white; text-decoration:underline;">Google Advanced Data Analytics Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/YN6L7Z9D34UK" target="_blank" style="color:white; text-decoration:underline;">Meta Marketing Analytics Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/EQ1ZMI42SGFF" target="_blank" style="color:white; text-decoration:underline;">IBM Business Analyst Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/RX6XAVNRR5SC" target="_blank" style="color:white; text-decoration:underline;">IBM Data Science Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/HYT7AG7DNENE" target="_blank" style="color:white; text-decoration:underline;">Google Business Intelligence Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/R8AVCXBU5C4Q" target="_blank" style="color:white; text-decoration:underline;">Advanced Statistics for Data Science Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/DRN2PMCQHVSL" target="_blank" style="color:white; text-decoration:underline;">Data Visualization Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/C41K56CUBKIZ" target="_blank" style="color:white; text-decoration:underline;">Mathematics for Machine Learning Specialization</a></li>
-  <li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/5CUM44MBZVS2" target="_blank" style="color:white; text-decoration:underline;">Linear Algebra from Elementary to Advanced Specialization</a></li>
-</ul>
-
-  <div class="text-center mt-4">
-    <a href="Keivan-Derafshian-CV.pdf" target="_blank" class="cv-btn me-3" download>
-      <i class="fa-solid fa-arrow-down me-2"></i> CV (English)
-    </a>
-    <a href="Keivan-Derafshian-Lebenslauf.pdf" target="_blank" class="cv-btn" download>
-      <i class="fa-solid fa-arrow-down me-2"></i> Lebenslauf (German)
-    </a>
-  </div>
-
-    </section>
-
-    <section class="page-section portfolio" id="projects">
-  <div class="container">
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Projects</h2>
-    <div class="divider-custom">
     </div>
+  </section>
 
-    <div class="row justify-content-center">
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">Projects</p>
+        <h2 class="section-title">Projects</h2>
+      </div>
 
-      <div class="col-md-8 col-lg-6 mb-5">
-        <div class="card shadow-lg border-0 rounded-4">
-          <img class="card-img-top rounded-top-4" src="assets/img/portfolio/house-price-analysis.png" alt="House Price Analysis Project">
-          <div class="card-body text-center">
-            <h5 class="card-title text-uppercase fw-bold mb-3">House Price Analysis</h5>
-            <p class="card-text text-muted mb-4">
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <div class="project-media">
+            <img src="assets/img/portfolio/house-price-analysis.png" alt="House Price Analysis Project" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">House Price Analysis</h3>
+            <p class="project-text">
               A complete data analysis project using a Kaggle housing dataset.
               Includes data cleaning, visualization, correlation study, and model building
               to predict house prices using regression methods.
             </p>
-            <a href="https://github.com/KeivanDerafshianApply/House-Price-Analysis"
-               target="_blank"
-               class="btn btn-primary me-2">
-              <i class="fab fa-github me-2"></i> View on GitHub
-            </a>
-            <a href="https://github.com/KeivanDerafshianApply/House-Price-Analysis/tree/main/results"
-               target="_blank"
-               class="btn btn-primary">
-              <i class="fas fa-chart-line me-2"></i> View Results
-            </a>
+            <div class="project-actions">
+              <a href="https://github.com/KeivanDerafshianApply/House-Price-Analysis" target="_blank" rel="noopener" class="btn btn-solid">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+              <a href="https://github.com/KeivanDerafshianApply/House-Price-Analysis/tree/main/results" target="_blank" rel="noopener" class="btn btn-ghost">
+                <i class="fas fa-chart-line"></i> View Results
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="col-md-8 col-lg-6 mb-5">
-        <div class="card shadow-lg border-0 rounded-4">
-          <img class="card-img-top rounded-top-4" src="assets/img/portfolio/time-series.png" alt="Store Sales Forecasting Project">
-          <div class="card-body text-center">
-            <h5 class="card-title text-uppercase fw-bold mb-3">Store Sales Forecasting</h5>
-            <p class="card-text text-muted mb-4">
+        <article class="project-card reveal">
+          <div class="project-media">
+            <img src="assets/img/portfolio/time-series.png" alt="Store Sales Forecasting Project" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Store Sales Forecasting</h3>
+            <p class="project-text">
               A time series project to forecast daily sales for a large grocery retailer using LightGBM. Features complex data merging and lag/rolling window feature engineering.
             </p>
-            <a href="https://github.com/KeivanDerafshianApply/store-sales-forecasting"
-               target="_blank"
-               class="btn btn-primary me-2">
-              <i class="fab fa-github me-2"></i> View on GitHub
-            </a>
-            <a href="https://github.com/KeivanDerafshianApply/store-sales-forecasting/blob/main/submission.csv"
-               target="_blank"
-               class="btn btn-primary">
-              <i class="fas fa-chart-line me-2"></i> View Results
-            </a>
+            <div class="project-actions">
+              <a href="https://github.com/KeivanDerafshianApply/store-sales-forecasting" target="_blank" rel="noopener" class="btn btn-solid">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+              <a href="https://github.com/KeivanDerafshianApply/store-sales-forecasting/blob/main/submission.csv" target="_blank" rel="noopener" class="btn btn-ghost">
+                <i class="fas fa-chart-line"></i> View Results
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="col-md-8 col-lg-6 mb-5">
-        <div class="card shadow-lg border-0 rounded-4">
-          <img class="card-img-top rounded-top-4" src="assets/img/portfolio/airbnb.png" alt="NYC Airbnb Analysis Project">
-          <div class="card-body text-center">
-            <h5 class="card-title text-uppercase fw-bold mb-3">NYC Airbnb Analysis</h5>
-            <p class="card-text text-muted mb-4">
+        <article class="project-card reveal">
+          <div class="project-media">
+            <img src="assets/img/portfolio/airbnb.png" alt="NYC Airbnb Analysis Project" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">NYC Airbnb Analysis</h3>
+            <p class="project-text">
               Exploratory data analysis of NYC Airbnb listings (2019). Includes data cleaning, visualization of price/location trends, and feature engineering in Python for Tableau visualization.
             </p>
-            <a href="https://github.com/KeivanDerafshianApply/NYC-Airbnb-Analysis"
-               target="_blank"
-               class="btn btn-primary me-2">
-              <i class="fab fa-github me-2"></i> View on GitHub
-            </a>
-            <a href="https://github.com/KeivanDerafshianApply/NYC-Airbnb-Analysis/blob/main/output/nyc_airbnb_cleaned.csv"
-               target="_blank"
-               class="btn btn-primary">
-              <i class="fas fa-table me-2"></i> View Cleaned Data
-            </a>
+            <div class="project-actions">
+              <a href="https://github.com/KeivanDerafshianApply/NYC-Airbnb-Analysis" target="_blank" rel="noopener" class="btn btn-solid">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+              <a href="https://github.com/KeivanDerafshianApply/NYC-Airbnb-Analysis/blob/main/output/nyc_airbnb_cleaned.csv" target="_blank" rel="noopener" class="btn btn-ghost">
+                <i class="fas fa-table"></i> View Cleaned Data
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="col-md-8 col-lg-6 mb-5">
-        <div class="card shadow-lg border-0 rounded-4">
-          <img class="card-img-top rounded-top-4" src="assets/img/portfolio/accidents.png" alt="US Accidents Analysis Project">
-          <div class="card-body text-center">
-            <h5 class="card-title text-uppercase fw-bold mb-3">US Accidents Analysis</h5>
-            <p class="card-text text-muted mb-4">
+        <article class="project-card reveal">
+          <div class="project-media">
+            <img src="assets/img/portfolio/accidents.png" alt="US Accidents Analysis Project" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">US Accidents Analysis</h3>
+            <p class="project-text">
               Analysis of US traffic accidents (2016-2023). Python used for sampling, cleaning, and aggregation of large dataset. Insights visualized using an interactive Tableau dashboard.
             </p>
-            <a href="https://github.com/KeivanDerafshianApply/US-Accidents-Analysis"
-               target="_blank"
-               class="btn btn-primary me-2">
-              <i class="fab fa-github me-2"></i> View on GitHub
+            <div class="project-actions">
+              <a href="https://github.com/KeivanDerafshianApply/US-Accidents-Analysis" target="_blank" rel="noopener" class="btn btn-solid">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+              <a href="https://public.tableau.com/views/US-Accidents-Analysis/USAccidentsOverview?:language=en-US&:sid=&:redirect=auth&publish=yes&showOnboarding=true&:display_count=n&:origin=viz_share_link" target="_blank" rel="noopener" class="btn btn-ghost">
+                <i class="fas fa-tachometer-alt"></i> View Dashboard
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="reveal">
+          <h4>Location</h4>
+          <p class="lead mb-0"> Taubenbogen 6, Potsdam, Germany </p>
+        </div>
+
+        <div class="reveal">
+          <h4>Around the Web</h4>
+          <div class="social-row">
+            <a class="btn-social" href="https://github.com/keivanderafshianapply" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
             </a>
-            <a href="https://public.tableau.com/views/US-Accidents-Analysis/USAccidentsOverview?:language=en-US&:sid=&:redirect=auth&publish=yes&showOnboarding=true&:display_count=n&:origin=viz_share_link"
-               target="_blank"
-               class="btn btn-primary">
-              <i class="fas fa-tachometer-alt me-2"></i> View Dashboard
+            <a class="btn-social" href="https://www.linkedin.com/in/keivan-derafshian/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a class="btn-social" href="mailto:keivanderafshianapply@gmail.com" aria-label="Email">
+              <i class="fas fa-envelope"></i>
             </a>
           </div>
         </div>
+
+        <div class="reveal">
+          <h4>About This Site</h4>
+          <p class="lead mb-0">
+            Theme created by
+            <a href="https://startbootstrap.com/theme/freelancer" target="_blank" rel="noopener">
+              Start Bootstrap
+            </a>
+          </p>
+        </div>
+
       </div>
 
-    </div> </div> </section>
-
-
-    <footer class="footer text-center" id="contact">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-lg-4 mb-5 mb-lg-0 text-center">
-        <h4 class="text-uppercase mb-4">Location</h4>
-        <p class="lead mb-0"> Taubenbogen 6, Potsdam, Germany </p>
-      </div>
-
-      <div class="col-lg-4 mb-5 mb-lg-0">
-        <h4 class="text-uppercase mb-4">Around the Web</h4>
-        <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/keivanderafshianapply" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/keivan-derafshian/" target="_blank">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a class="btn btn-outline-light btn-social mx-1" href="mailto:keivanderafshianapply@gmail.com">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-
-      <div class="col-lg-4 text-center">
-        <h4 class="text-uppercase mb-4">About This Site</h4>
-        <p class="lead mb-0">
-          Theme created by
-          <a href="https://startbootstrap.com/theme/freelancer" target="_blank" style="color:white; text-decoration:underline;">
-            Start Bootstrap
-          </a>
-        </p>
-      </div>
-
+      <div class="footer-note">y = &beta;&#8320; + &beta;&#8321;x + &epsilon;</div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/scripts.js"></script>
-  </body>
-</html> 
+  <script>
+    // Mobile navigation toggle
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var menu = document.getElementById('navMenu');
+      toggle.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    // Scroll reveal
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var items = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+
+    // Active nav link on scroll
+    (function () {
+      var links = document.querySelectorAll('.nav-links a');
+      var sections = Array.prototype.map.call(links, function (a) {
+        return document.querySelector(a.getAttribute('href'));
+      });
+      function update() {
+        var pos = window.scrollY + 120;
+        var current = null;
+        sections.forEach(function (s, i) { if (s && s.offsetTop <= pos) current = i; });
+        links.forEach(function (a, i) { a.classList.toggle('active', i === current); });
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+</html>
